@@ -29,14 +29,13 @@ function LoginPage() {
     const logout = () => {
         setstate(false);
         setToken(null);
-        clearInterval();
+        // clearInterval();
         axios.defaults.headers.post['x-auth-token'] = null;
 
     }
 
   const loadMe = () => {
       var url = baseUrl+'/api/me';
-
       return axios.get(url)
           .then((response) => {
               console.log(response);
@@ -54,8 +53,8 @@ function LoginPage() {
 
     const autoRefresh = () => {
       setInterval(() => {
-        if (state) loadMe();
-      }, 2000);
+        loadMe()
+      }, 1000);
     }
 
    

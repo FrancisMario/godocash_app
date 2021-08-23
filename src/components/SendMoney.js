@@ -37,6 +37,9 @@ const SendMoney = (props) => {
                 if (response.status === 400) {
                     alert("Incorrect username and password");
                 }
+                if (response.status === 401) {
+                    alert("unauthorised");
+                }
                 alert("Money was successfully sent");
                 close();
             })
