@@ -105,7 +105,7 @@ function LoginPage() {
                     <Header>
                       <Navbar appearance="inverse">
                         <Navbar.Header>
-                          <a className="navbar-brand logo">Brand</a>
+                          <a className="navbar-brand logo"></a>
                         </Navbar.Header>
                       </Navbar>
                     </Header>
@@ -135,7 +135,7 @@ function LoginPage() {
                         </FlexboxGrid.Item>
                       </FlexboxGrid>
                     </Content>
-                    <Footer>Footer</Footer>
+                    <Footer></Footer>
                   </Container>
                 </div>
                 : 
