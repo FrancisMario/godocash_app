@@ -29,6 +29,7 @@ function LoginPage() {
     const logout = () => {
         setstate(false);
         setToken(null);
+        clearInterval();
         axios.defaults.headers.post['x-auth-token'] = null;
 
     }
@@ -53,7 +54,7 @@ function LoginPage() {
 
     const autoRefresh = () => {
       setInterval(() => {
-        loadMe();
+        if (state) loadMe();
       }, 2000);
     }
 
@@ -95,7 +96,8 @@ function LoginPage() {
             state: state,
             token: token,
             data: user,
-            baseurl: baseUrl
+            baseurl: baseUrl,
+            logout: () => logout()
         }}>
             {!state ?
                   <div className="show-fake-browser login-page">

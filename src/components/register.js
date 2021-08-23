@@ -120,7 +120,7 @@ const Register = (props) => {
 
             <Modal show={show} onHide={() => close()} onExited={() => resetRows()}>
                 <Modal.Header>
-                    <Modal.Title>Make Transaction</Modal.Title>
+                    <Modal.Title>Create New Account</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {rows ? (

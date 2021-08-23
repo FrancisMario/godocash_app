@@ -140,7 +140,7 @@ const SendMoney = (props) => {
     return (
         <div className="modal-container">
             <ButtonToolbar>
-                <Button onClick={() => open()}>Make Transaction </Button>
+                <Button appearance="primary" onClick={() => open()}>Make Transaction </Button>
             </ButtonToolbar>
 
             <Modal show={show} onHide={() => close()} onExited={() => resetRows()}>

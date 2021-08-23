@@ -1,19 +1,10 @@
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import UserContext from '../context/UserContext';
 import { Container, Header, Content, Dropdown, Icon, Nav, Navbar, Sidebar, Sidenav } from 'rsuite';
-import Dashboard from './Dashboard'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import Dashboard from './Dashboard';
 
 import { Settings } from "./../components/settings";
-var qs = require('qs');
-var axios = require('axios');
-
 const headerStyles = {
   padding: 18,
   fontSize: 16,
@@ -50,9 +41,8 @@ const NavToggle = ({ expand, onChange }) => {
               return <Icon style={iconStyles} icon="cog" />;
             }}
           >
-            <Dropdown.Item>Help</Dropdown.Item>
-            <Dropdown.Item>Settings</Dropdown.Item>
-            <Dropdown.Item>Sign out</Dropdown.Item>
+            <Dropdown.Item onClick={() => this.handleNav(1)}>Settings</Dropdown.Item>
+            {/* <Dropdown.Item onClick={}>Logout</Dropdown.Item> */}
           </Dropdown>
         </Nav>
 
@@ -63,6 +53,27 @@ const NavToggle = ({ expand, onChange }) => {
         </Nav>
       </Navbar.Body>
     </Navbar>
+  );
+};
+
+const Top = ({ expand, onChange }) => {
+  const user = useContext(UserContext);
+
+  return (
+    <Header>
+    <Navbar>
+      <Navbar.Header>
+        {/* <a href="#" className="navbar-brand logo">RSUITE</a> */}
+      </Navbar.Header>
+      <Navbar.Body>
+        <Nav pullRight>
+          <Dropdown icon={<Icon icon="cog" />} title="Options">
+            <Dropdown.Item onClick={() => user.logout()}>Logout</Dropdown.Item>
+          </Dropdown>
+        </Nav>
+      </Navbar.Body>
+    </Navbar>
+  </Header>
   );
 };
 
@@ -144,20 +155,7 @@ class HomePage extends React.Component {
         </Sidebar>
 
         <Container>
-          <Header>
-            <Navbar>
-              <Navbar.Header>
-                {/* <a href="#" className="navbar-brand logo">RSUITE</a> */}
-              </Navbar.Header>
-              <Navbar.Body>
-                <Nav pullRight>
-                  <Dropdown icon={<Icon icon="cog" />} title="Options">
-                    <Dropdown.Item>Logout</Dropdown.Item>
-                  </Dropdown>
-                </Nav>
-              </Navbar.Body>
-            </Navbar>
-          </Header>
+          <Top/>
           <Content>
             <div style={(contentStyle)}>
               {this.state.page === 0 ? <Dashboard/> : this.state.page === 1 ? <Settings/> : <Dashboard/> }
