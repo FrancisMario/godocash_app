@@ -86,7 +86,7 @@ class HomePage extends React.Component {
     super(props);
     this.state = {
       expand: true,
-      page: 0,
+      page: 2,
       active0: true,
       active1: false,
       active2: false,
@@ -142,9 +142,9 @@ class HomePage extends React.Component {
             </Sidenav.Header>
             <Sidenav.Body>
               <Nav>
-                <Nav.Item eventKey="1" active={this.state.active0} onClick={() => this.handleNav(0)} icon={<Icon icon="dashboard" />}>
+                {/* <Nav.Item eventKey="1" active={this.state.active0} onClick={() => this.handleNav(0)} icon={<Icon icon="dashboard" />}>
                   Dashboard
-                </Nav.Item>
+                </Nav.Item> */}
                 <Dropdown
                   eventKey="3"
                   trigger="hover"
