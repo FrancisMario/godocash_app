@@ -2,9 +2,13 @@
 import React, { useState, useContext } from 'react';
 import UserContext from '../context/UserContext';
 import { Container, Header, Content, Dropdown, Icon, Nav, Navbar, Sidebar, Sidenav } from 'rsuite';
-import Dashboard from './Dashboard';
 
+import Dashboard from './Dashboard';
 import { Settings } from "./../components/settings";
+import { Entity } from "./../components//entities_new";
+import { Details } from "./../components/Details";
+
+
 const headerStyles = {
   padding: 18,
   fontSize: 16,
@@ -101,16 +105,19 @@ class HomePage extends React.Component {
         this.state.active0 = true;
         this.state.active1 = false;
         this.state.active2 = false;
+        this.state.active3 = false;
         break;
-      case 1:
-        this.state.active0 = false;
-        this.state.active1 = true;
-        this.state.active2 = false;
-        break;
-      case 2:
-        this.state.active0 = false;
-        this.state.active1 = false;
-        this.state.active2 = true;
+        case 1:
+          this.state.active0 = false;
+          this.state.active1 = true;
+          this.state.active2 = false;
+          this.state.active3 = false;
+          break;
+          case 2:
+            this.state.active0 = false;
+            this.state.active1 = false;
+            this.state.active2 = false;
+            this.state.active3 = true;
         break;
     }
     this.setState({
@@ -146,7 +153,8 @@ class HomePage extends React.Component {
                   placement="rightStart"
                 >
                   {/* <Dropdown.Item eventKey="3-1" active={this.state.active1} onClick={() => this.handleNav(0)}>History</Dropdown.Item> */}
-                  <Dropdown.Item eventKey="3-2" active={this.state.active2} onClick={() => this.handleNav(1)}>Settings</Dropdown.Item>
+                  <Dropdown.Item eventKey="" active={this.state.active3} onClick={() => this.handleNav(2)}>Entities</Dropdown.Item>
+                  <Dropdown.Item eventKey="" active={this.state.active2} onClick={() => this.handleNav(1)}>Settings</Dropdown.Item>
                 </Dropdown>
               </Nav>
             </Sidenav.Body>
@@ -158,7 +166,7 @@ class HomePage extends React.Component {
           <Top/>
           <Content>
             <div style={(contentStyle)}>
-              {this.state.page === 0 ? <Dashboard/> : this.state.page === 1 ? <Settings/> : <Dashboard/> }
+              {this.state.page === 0 ? <Dashboard/> : this.state.page === 1 ? <Settings/> : this.state.page === 2 ?  <Entity/> : <Dashboard/> }
               {/* <Dashboard /> */}
             </div>
           </Content>

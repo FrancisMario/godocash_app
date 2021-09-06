@@ -13,8 +13,11 @@ function LoginPage() {
 
     const [token, setToken] = useState(null);
     const [state, setstate] = useState(null);
+    const [entities, setEntities] = useState(null);
+  
 
-    const baseUrl = "https://godocash.herokuapp.com";
+    // const baseUrl = "https://godocash.herokuapp.com";
+    const baseUrl = "http://localhost:3000";
 
     const [user, setUser] = useState({
         name: null,
@@ -33,6 +36,22 @@ function LoginPage() {
         axios.defaults.headers.post['x-auth-token'] = null;
 
     }
+    const loadEntities = () => {
+      var url = baseUrl+'/api/entity';
+      return axios.get(url)
+          .then((response) => {
+              console.log(response);
+              if (response.status === 400) {
+                  alert("Incorrect username and password");
+              }
+              setEntities(response.data.data);
+          })
+          .catch((err) => {
+              console.log(err);
+          });
+
+
+  }
 
   const loadMe = () => {
       var url = baseUrl+'/api/me';
@@ -54,6 +73,7 @@ function LoginPage() {
     const autoRefresh = () => {
       setInterval(() => {
         loadMe()
+        loadEntities()
       }, 1000);
     }
 
@@ -85,6 +105,7 @@ function LoginPage() {
             })
             .catch((err) => {
                 console.log(err);
+                alert(err);
             });
 
 
@@ -96,6 +117,7 @@ function LoginPage() {
             token: token,
             data: user,
             baseurl: baseUrl,
+            entities: entities,
             logout: () => logout()
         }}>
             {!state ?
