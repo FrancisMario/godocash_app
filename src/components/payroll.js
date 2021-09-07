@@ -52,7 +52,7 @@ export const Payroll = (props) => {
                     <AddPayroll index={props.index} />
                 </div>
                 <div className="col-3">
-                    <ProcessPayroll index={props.index} />
+                    <ProcessPayroll data={payrollList} />
                 </div>
             </div>
             <hr />

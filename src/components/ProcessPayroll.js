@@ -7,7 +7,7 @@ var axios = require('axios');
 const ProcessPayroll = (props) => {
 
     const user = useContext(UserContext);
-
+    const [data, setData] = useState(props.data);
 
     const [show, setShow] = useState(false);
     const [overflow, setOverflow] = useState(true);
@@ -23,13 +23,7 @@ const ProcessPayroll = (props) => {
     const submit = (e) => {
         var url = user.baseurl+'/api/entity/payroll';
 
-        axios.post(url, {
-            'phone': phone,
-            'name': name,
-            'amount': amount,
-            'role': role,
-            'index': props.index
-        })
+        axios.post(url, {})
             .then((response) => {
                 console.log(response);
                 if (response.status === 400) {
@@ -58,13 +52,6 @@ const ProcessPayroll = (props) => {
         }, 1000);
     }
 
-    const success = () => {
-        return (
-            <>
-            </>
-        );
-    }
-
     const form = () => {
         return (
             <>
@@ -74,8 +61,9 @@ const ProcessPayroll = (props) => {
                         <FormGroup>
                             <Row>
                              {/* <ControlLabel>Name</ControlLabel> */}
-                             <h4> Name </h4>
+                             <h4> Name 
                              <Toggle defaultChecked />
+                             </h4>
                             </Row>
                         </FormGroup>
                         <FormGroup>
