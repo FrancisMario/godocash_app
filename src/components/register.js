@@ -16,6 +16,8 @@ const Register = (props) => {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
+    const [entityName, setEntityName] = useState("");
+    const [entityLocation, setLocation] = useState("");
 
 
 
@@ -26,6 +28,8 @@ const Register = (props) => {
             'name': name,
             'email': email,
             'phone': phone,
+            'entity.name': entityName,
+            'entity.location': entityLocation,
             'password': password
         })
             .then((response) => {
@@ -79,6 +83,18 @@ const Register = (props) => {
                             <ControlLabel>Email</ControlLabel>
                             <FormControl name="email" type="email" required={true} onChange={(change) => setEmail(change)} />
                             <HelpBlock tooltip>Enter your email</HelpBlock>
+                            <HelpBlock >Required</HelpBlock>
+                        </FormGroup>
+                        <FormGroup>
+                            <ControlLabel>Business Name</ControlLabel>
+                            <FormControl name="name" type="text" required={true} onChange={(change) => setName(change)} />
+                            <HelpBlock tooltip>Enter business name</HelpBlock>
+                            <HelpBlock >Required</HelpBlock>
+                        </FormGroup>
+                        <FormGroup>
+                            <ControlLabel>Business Location</ControlLabel>
+                            <FormControl name="location" type="name" required={true} onChange={(change) => setLocation(change)} />
+                            <HelpBlock tooltip>Enter business location</HelpBlock>
                             <HelpBlock >Required</HelpBlock>
                         </FormGroup>
                         <FormGroup>
