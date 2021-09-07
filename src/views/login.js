@@ -15,7 +15,7 @@ function LoginPage() {
   const [state, setstate] = useState(null);
   const [entities, setEntities] = useState(null);
 
-  const baseUrl = "";
+  var baseUrl = "";
   if (process.env.env = "production") {
     baseUrl = "https://godocash.herokuapp.com";
   } else {
