@@ -58,6 +58,7 @@ function LoginPage() {
 
   const loadMe = () => {
     var url = baseUrl + '/api/me';
+    console.log(baseUrl)
     return axios.get(url)
       .then((response) => {
         console.log(response);
