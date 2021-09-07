@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
-import { Modal, Loader, Button, ButtonToolbar, Form, FormGroup, FormControl, HelpBlock, ControlLabel, Container } from 'rsuite';
+import { Modal, Loader, Button, ButtonToolbar, Form, FormGroup, ControlLabel, Container, Toggle } from 'rsuite';
+import Row from 'react-bootstrap/Row';
 import UserContext from '../context/UserContext';
 var axios = require('axios');
 
@@ -71,28 +72,11 @@ const ProcessPayroll = (props) => {
 
                     <Form onSubmit={() => submit()} fluid>
                         <FormGroup>
-                            <ControlLabel>Name</ControlLabel>
-                            <FormControl name="name" type="text" required={true} onChange={(change) => setName(change)} />
-                            <HelpBlock tooltip>name of person</HelpBlock>
-                            <HelpBlock >Required</HelpBlock>
-                        </FormGroup>
-                        <FormGroup>
-                            <ControlLabel>Amount</ControlLabel>
-                            <FormControl name="amount" required={true} onChange={(change) => setAmount(change)} type="number" />
-                            <HelpBlock tooltip>Monthy expense</HelpBlock>
-                            <HelpBlock>Required</HelpBlock>
-                        </FormGroup>
-                        <FormGroup>
-                            <ControlLabel>Phone</ControlLabel>
-                            <FormControl rows={3}  name="comment" type="comment" required={true} onChange={(change) => setPhone(change)} />
-                            <HelpBlock tooltip>Phone</HelpBlock>
-                            <HelpBlock >Required</HelpBlock>
-                        </FormGroup>
-                        <FormGroup>
-                            <ControlLabel>Role</ControlLabel>
-                            <FormControl rows={3}  name="comment" type="comment" required={true} onChange={(change) => setRole(change)} />
-                            <HelpBlock tooltip>Person Role</HelpBlock>
-                            <HelpBlock >Required</HelpBlock>
+                            <Row>
+                             {/* <ControlLabel>Name</ControlLabel> */}
+                             <h4> Name </h4>
+                             <Toggle defaultChecked />
+                            </Row>
                         </FormGroup>
                         <FormGroup>
                             <ButtonToolbar>
@@ -132,14 +116,14 @@ const ProcessPayroll = (props) => {
                         </div>
                     )}
                 </Modal.Body>
-                <Modal.Footer>
+                {/* <Modal.Footer>
                     <Button onClick={() => close()} appearance="primary">
                         Ok
                     </Button>
                     <Button onClick={() => close()} appearance="subtle">
                         Cancel
                     </Button>
-                </Modal.Footer>
+                </Modal.Footer> */}
             </Modal>
         </div>
     );

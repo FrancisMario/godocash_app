@@ -11,6 +11,7 @@ export const Payroll = (props) => {
     const user = useContext(UserContext);
 
     const [payrollcost, setPayrollcost] = useState(-1);
+    const [payrollList, setPayrollList] = useState([]);
 
     // get stats
     const getData = () => {
@@ -19,7 +20,8 @@ export const Payroll = (props) => {
         console.log(url);
         axios.get(url).then((response) => {
             let total = 0;
-            response.data.data[props.index].payroll.forEach(value => {
+            setPayrollList(response.data.data.payroll);
+            response.data.data.payroll.forEach(value => {
                 total += value.amount;
             })
             setPayrollcost(total);
@@ -54,7 +56,7 @@ export const Payroll = (props) => {
                 </div>
             </div>
             <hr />
-            <ExpandedTable url={url} index={props.index} table="payroll" column={[{ title: "Name", key: "name" }, { title: "Role", key: "role" }, { title: "Amount", key: "amount" }, { title: "Contact", key: "phone" }]} />
+            <ExpandedTable data={payrollList} table="payroll" column={[{ title: "Name", key: "name" }, { title: "Role", key: "role" }, { title: "Amount", key: "amount" }, { title: "Contact", key: "phone" }]} />
         </>
     );
 }

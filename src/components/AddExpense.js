@@ -77,13 +77,13 @@ const AddExpense = (props) => {
                         <FormGroup>
                             <ControlLabel>Source</ControlLabel>
                             <FormControl name="source" type="text" required={true} onChange={(change) => setSource(change)} />
-                            <HelpBlock tooltip>source of the revenue</HelpBlock>
+                            <HelpBlock tooltip>source of the expense</HelpBlock>
                             <HelpBlock >Required</HelpBlock>
                         </FormGroup>
                         <FormGroup>
                             <ControlLabel>Comment</ControlLabel>
                             <FormControl rows={3}  name="comment" type="comment" required={true} onChange={(change) => setComment(change)} />
-                            <HelpBlock tooltip>Comment about the main revenue injection</HelpBlock>
+                            <HelpBlock tooltip>Comment about expense</HelpBlock>
                             <HelpBlock >Required</HelpBlock>
                         </FormGroup>
                         <FormGroup>
@@ -108,12 +108,12 @@ const AddExpense = (props) => {
     return (
         <div className="modal-container">
             <ButtonToolbar>
-                <Button onClick={() => open()} appearance="primary">Add Revenue</Button>
+                <Button onClick={() => open()} appearance="primary">Add Expense</Button>
             </ButtonToolbar>
 
             <Modal show={show} onHide={() => close()} onExited={() => resetRows()}>
                 <Modal.Header>
-                    <Modal.Title>Add Revenue</Modal.Title>
+                    <Modal.Title>Add Expense</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {rows ? (
@@ -125,12 +125,12 @@ const AddExpense = (props) => {
                     )}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={() => close()} appearance="primary">
+                    {/* <Button onClick={() => close()} appearance="primary">
                         Ok
                     </Button>
                     <Button onClick={() => close()} appearance="subtle">
                         Cancel
-                    </Button>
+                    </Button> */}
                 </Modal.Footer>
             </Modal>
         </div>

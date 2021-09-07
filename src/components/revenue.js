@@ -11,16 +11,16 @@ export const Revenue = (props) => {
 
     const [balance, setBalance] = useState(-1);
     const [history, setHistory] = useState([]);
-    const [expense, setExpense] = useState(0);
 
     // get stats
     const getData = () => {
          // loading 
-         const url = user.baseurl+"/api/entity";
+         const url = user.baseurl+"/api/report";
          console.log(url);
          axios.get(url).then((response)=>{
-            setBalance(response.data.data[props.index].balance);
-            setHistory(response.data.data[props.index].revenue);
+            setBalance(response.data.data.revenue);
+            setHistory(response.data.data.revenueHistory.reverse());
+            // alert(JSON.stringify(response.data.data.revenueHistory));
         }).catch((err) => {
             alert(err);
         });
@@ -40,12 +40,12 @@ export const Revenue = (props) => {
     const url = user.baseurl+"/api/entity";
     return(
         <>
-        <h4>Total Revenue {props.index}</h4>
-        <h2>{balance < 0 ? "Loading" : "D "+ balance +".00"}</h2> <span style={{"color":"green"}}>{/**Net:**/}</span>
+        <h4>Total Revenue - September 2021 </h4>
+        <h2 style={{"color":"green"}}>{balance < 0 ? "Loading" : "D "+ balance +".00"}</h2> <span style={{"color":"green"}}>{/**Net:**/}</span>
         <hr/>
-        <AddRevenue index={props.index}/>
+        <AddRevenue/>
         <hr/>
-        <ExpandedTable url={url} index={props.index} table="revenue" column={[{title:"Amount", key:"amount"},{title:"Source", key:"source"}, {title:"Date", key:"date"}]} />
+        <ExpandedTable data={history} column={[{title:"Amount", key:"amount"},{title:"Source", key:"source"}, {title:"Date", key:"date"}]} />
         </>
     );
 }

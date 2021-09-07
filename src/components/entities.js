@@ -3,16 +3,14 @@ import { Col, Row, Panel, Button, ButtonToolbar, FormGroup } from 'rsuite';
 import { Container } from 'react-bootstrap';
 import React, { useState, useContext, useEffect } from 'react';
 import UserContext from '../context/UserContext';
-import { NewEntity } from '../components/NewEntity';
 
 var axios = require('axios');
 
-export const Entity = () => {
+export const Entity = ({children, title}) => {
 
     const user = useContext(UserContext);
 
     const entities = user.entities;
-    const [children, setChildren] = useState([]);
 
     const Card = ({ id, title, description, balance }) => {
         return (
@@ -35,29 +33,14 @@ export const Entity = () => {
         );
     }
 
-    useEffect(() => {
-        if (entities) {
-            let res = [];
-            entities.forEach((value) => {
-                res.push(<Card id={value._id} title={value.name} description={value.description} balance={value.balance} />);
-            })
-            setChildren(res);
-        }
-        return () => {
-            // cleanup
-        }
-    }, [entities]);
 
     return (
         <Container >
-            <h2>Businesses</h2>
+            <h2>{title}</h2>
             <br />
-            <NewEntity />
             <hr />
             {/* body */}
-            <Row className="show-grid">
-                {children}
-            </Row>
+            {children}
         </Container>
 
     );

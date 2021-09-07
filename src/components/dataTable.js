@@ -35,10 +35,7 @@ class ExpandedTable extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            loop: null,
-            table: props.table,
-            url: props.url,
-            index: props.index,
+            loop:null,
             data: [],
             expandedRowKeys: [],
             column: []
@@ -48,7 +45,7 @@ class ExpandedTable extends React.Component {
 
 
     loadColumns() {
-        var width = 1300 / this.props.column.length;
+        var width = 1000 / this.props.column.length;
         this.state.column = this.props.column.map(value => {
             return (
                 <Table.Column width={width}>
@@ -59,35 +56,29 @@ class ExpandedTable extends React.Component {
         });
     }
 
-    getData() {
-        console.log(this.state.url);
-        axios.get(this.state.url).then((response) => {
-            this.state.data = response.data.data[this.state.index][this.state.table];
-        }).catch((err) => {
-            alert(err);
-        });
-    }
+    // getData() {
+    //     axios.get(this.state.url).then((response) => {
+    //         this.state.data = response.data.data;
+    //     }).catch((err) => {
+    //         alert(err);
+    //     });
+    // }
 
 
-    componentWillUnmount() {
-        clearInterval(this.state.loop);
+    // componentWillUnmount() {
+    //     clearInterval(this.state.loop);
+    // }
+
+    componentDidUpdate(){
+        // this.state.data = [];
+        this.state.data = this.props.data;
     }
     componentDidMount() {
         this.loadColumns();
-        this.state.loop = setInterval(() => {
-            this.getData();
-        }, 2000)
+        this.state.data = this.props.data;
     }
 
 
-    // getData() {
-    //     this.state.data = props.data;  
-    //     axios.get(this.props.url).then((data)=>{
-
-    //     }).catch((err) => {
-
-    //     })
-    // }
     handleExpanded(rowData, dataKey) {
         const { expandedRowKeys } = this.state;
 
@@ -114,7 +105,7 @@ class ExpandedTable extends React.Component {
         return (
             <Table
                 height={400}
-                data={data}
+                data={this.state.data}
                 rowKey={rowKey}
                 expandedRowKeys={expandedRowKeys}
                 onRowClick={data => {
@@ -122,20 +113,9 @@ class ExpandedTable extends React.Component {
                 }}
                 renderRowExpanded={rowData => {
                     return (
-                        <div>
-                            <div
-                                style={{
-                                    width: 60,
-                                    height: 60,
-                                    float: 'left',
-                                    marginRight: 10,
-                                    background: '#eee'
-                                }}
-                            >
-                                <img src={rowData.avartar} style={{ width: 60 }} />
-                            </div>
-                            <p>{rowData.email}</p>
-                            <p>{rowData.date}</p>
+                        <div style={{"padding-left":"30px"}}>
+                            <p>{rowData.comment}</p>
+                            {/* <p>{rowData.date}</p> */}
                         </div>
                     );
                 }}

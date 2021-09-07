@@ -5,8 +5,11 @@ import { Container, Header, Content, Dropdown, Icon, Nav, Navbar, Sidebar, Siden
 
 import Dashboard from './Dashboard';
 import { Settings } from "./../components/settings";
-import { Entity } from "./../components//entities_new";
+import { Entity } from "./../components//entities";
 import { Details } from "./../components/Details";
+import {Revenue}  from './../components/revenue';
+import {Expense}  from './../components/expense';
+import {Payroll}  from './../components/payroll';
 
 
 const headerStyles = {
@@ -65,19 +68,19 @@ const Top = ({ expand, onChange }) => {
 
   return (
     <Header>
-    <Navbar>
-      <Navbar.Header>
-        {/* <a href="#" className="navbar-brand logo">RSUITE</a> */}
-      </Navbar.Header>
-      <Navbar.Body>
-        <Nav pullRight>
-          <Dropdown icon={<Icon icon="cog" />} title="Options">
-            <Dropdown.Item onClick={() => user.logout()}>Logout</Dropdown.Item>
-          </Dropdown>
-        </Nav>
-      </Navbar.Body>
-    </Navbar>
-  </Header>
+      <Navbar>
+        <Navbar.Header>
+          {/* <a href="#" className="navbar-brand logo">RSUITE</a> */}
+        </Navbar.Header>
+        <Navbar.Body>
+          <Nav pullRight>
+            <Dropdown icon={<Icon icon="cog" />} title="Options">
+              <Dropdown.Item onClick={() => user.logout()}>Logout</Dropdown.Item>
+            </Dropdown>
+          </Nav>
+        </Navbar.Body>
+      </Navbar>
+    </Header>
   );
 };
 
@@ -86,10 +89,7 @@ class HomePage extends React.Component {
     super(props);
     this.state = {
       expand: true,
-      page: 2,
-      active0: true,
-      active1: false,
-      active2: false,
+      page: 1,
     };
     this.handleToggle = this.handleToggle.bind(this);
     this.handleNav = this.handleNav.bind(this);
@@ -99,27 +99,13 @@ class HomePage extends React.Component {
       expand: !this.state.expand
     });
   }
+
+  isActive(key) {
+    if (this.state.page === key) { return true }
+    return false;
+  }
   handleNav(key) {
-    switch (key) {
-      case 0:
-        this.state.active0 = true;
-        this.state.active1 = false;
-        this.state.active2 = false;
-        this.state.active3 = false;
-        break;
-        case 1:
-          this.state.active0 = false;
-          this.state.active1 = true;
-          this.state.active2 = false;
-          this.state.active3 = false;
-          break;
-          case 2:
-            this.state.active0 = false;
-            this.state.active1 = false;
-            this.state.active2 = false;
-            this.state.active3 = true;
-        break;
-    }
+
     this.setState({
       page: key
     });
@@ -153,8 +139,9 @@ class HomePage extends React.Component {
                   placement="rightStart"
                 >
                   {/* <Dropdown.Item eventKey="3-1" active={this.state.active1} onClick={() => this.handleNav(0)}>History</Dropdown.Item> */}
-                  <Dropdown.Item eventKey="" active={this.state.active3} onClick={() => this.handleNav(2)}>Entities</Dropdown.Item>
-                  <Dropdown.Item eventKey="" active={this.state.active2} onClick={() => this.handleNav(1)}>Settings</Dropdown.Item>
+                  <Dropdown.Item eventKey="" active={this.isActive(2)} onClick={() => this.handleNav(2)}>Revenue</Dropdown.Item>
+                  <Dropdown.Item eventKey="" active={this.isActive(3)} onClick={() => this.handleNav(3)}>Expense</Dropdown.Item>
+                  <Dropdown.Item eventKey="" active={this.isActive(4)} onClick={() => this.handleNav(4)}>Payroll</Dropdown.Item>
                 </Dropdown>
               </Nav>
             </Sidenav.Body>
@@ -163,11 +150,15 @@ class HomePage extends React.Component {
         </Sidebar>
 
         <Container>
-          <Top/>
+          <Top />
           <Content>
             <div style={(contentStyle)}>
-              {this.state.page === 0 ? <Dashboard/> : this.state.page === 1 ? <Settings/> : this.state.page === 2 ?  <Entity/> : <Dashboard/> }
-              {/* <Dashboard /> */}
+              {/* Payroll */}
+              {this.state.page === 1 ? <Dashboard /> : 
+              this.state.page === 2 ? <Entity title="Revenue"> <Revenue /></Entity> : 
+              this.state.page === 3 ?  <Entity title="Expense"> <Expense /></Entity> : 
+              this.state.page === 4 ? <Entity title="Expense"> <Payroll /></Entity> : 
+              <Dashboard />}
             </div>
           </Content>
         </Container>

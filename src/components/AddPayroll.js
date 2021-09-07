@@ -133,12 +133,12 @@ const AddPayroll = (props) => {
                     )}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={() => close()} appearance="primary">
+                    {/* <Button onClick={() => close()} appearance="primary">
                         Ok
                     </Button>
                     <Button onClick={() => close()} appearance="subtle">
                         Cancel
-                    </Button>
+                    </Button> */}
                 </Modal.Footer>
             </Modal>
         </div>
