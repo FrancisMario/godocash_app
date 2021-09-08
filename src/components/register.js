@@ -87,7 +87,7 @@ const Register = (props) => {
                         </FormGroup>
                         <FormGroup>
                             <ControlLabel>Business Name</ControlLabel>
-                            <FormControl name="name" type="text" required={true} onChange={(change) => setName(change)} />
+                            <FormControl name="name" type="text" required={true} onChange={(change) => setEntityName(change)} />
                             <HelpBlock tooltip>Enter business name</HelpBlock>
                             <HelpBlock >Required</HelpBlock>
                         </FormGroup>

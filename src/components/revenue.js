@@ -19,8 +19,9 @@ export const Revenue = (props) => {
          console.log(url);
          axios.get(url).then((response)=>{
             setBalance(response.data.data.revenue);
-            setHistory(response.data.data.revenueHistory.reverse());
-            // alert(JSON.stringify(response.data.data.revenueHistory));
+            if(response.data.data.revenueHistory){
+                setHistory(response.data.data.revenueHistory.reverse());
+            }
         }).catch((err) => {
             alert(err);
         });

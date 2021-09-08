@@ -15,12 +15,9 @@ function LoginPage() {
   const [state, setstate] = useState(null);
   const [entities, setEntities] = useState(null);
 
-  var baseUrl = "";
-  if (process.env.env = "production") {
-    baseUrl = "https://godocash.herokuapp.com";
-  } else {
-    baseUrl = "http://localhost:3000";
-  }
+  // var baseUrl = "https://godocash.herokuapp.com";
+  var baseUrl = "http://localhost:3000";
+
 
   const [user, setUser] = useState({
     name: null,
@@ -58,7 +55,6 @@ function LoginPage() {
 
   const loadMe = () => {
     var url = baseUrl + '/api/me';
-    console.log(baseUrl)
     return axios.get(url)
       .then((response) => {
         console.log(response);
@@ -84,8 +80,6 @@ function LoginPage() {
 
   const login = async (e) => {
     // e.preventDefault();
-    console.log(email);
-    console.log(password);
     var url = baseUrl + '/auth/login';
 
     axios.post(url, {
