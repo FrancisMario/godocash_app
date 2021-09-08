@@ -15,8 +15,8 @@ function LoginPage() {
   const [state, setstate] = useState(null);
   const [entities, setEntities] = useState(null);
 
-  // var baseUrl = "https://godocash.herokuapp.com";
-  var baseUrl = "http://localhost:3000";
+  var baseUrl = "https://godocash.herokuapp.com";
+  // var baseUrl = "http://localhost:3000";
 
 
   const [user, setUser] = useState({
