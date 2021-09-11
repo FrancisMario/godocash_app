@@ -1,20 +1,21 @@
 import React, { useState, useContext } from 'react';
 import { Modal, Loader, Button, ButtonToolbar, Form, FormGroup, FormControl, HelpBlock, ControlLabel, Container } from 'rsuite';
 import UserContext from '../context/UserContext';
+import DatePicker from 'react-date-picker';
 var axios = require('axios');
 
 const AddExpense = (props) => {
-
+    
     const user = useContext(UserContext);
-
-
+    
+    
     const [show, setShow] = useState(false);
     const [overflow, setOverflow] = useState(true);
     const [rows, setRows] = useState(0);
-
+    
     const [amount, setAmount] = useState("");
     const [source, setSource] = useState("");
-    const [comment, setComment] = useState("");
+    const [date, setDate] = useState(new Date());
 
 
 
@@ -24,7 +25,7 @@ const AddExpense = (props) => {
         axios.post(url, {
             'source': source,
             'amount': amount,
-            'comment': comment,
+            'date': date,
             'index': props.index
         })
             .then((response) => {
@@ -81,10 +82,11 @@ const AddExpense = (props) => {
                             <HelpBlock >Required</HelpBlock>
                         </FormGroup>
                         <FormGroup>
-                            <ControlLabel>Comment</ControlLabel>
-                            <FormControl rows={3}  name="comment" type="comment" required={true} onChange={(change) => setComment(change)} />
-                            <HelpBlock tooltip>Comment about expense</HelpBlock>
-                            <HelpBlock >Required</HelpBlock>
+                            <ControlLabel>Date</ControlLabel>
+                            {/* <FormControl rows={3}  name="comment" type="comment" required={true} onChange={(change) => setComment(change)} /> */}
+                            <DatePicker value={date} onChange={(date) => setDate(date)} />
+                            <HelpBlock tooltip>date</HelpBlock>
+                            <HelpBlock >Required</HelpBlock>x
                         </FormGroup>
                         <FormGroup>
                             <ButtonToolbar>

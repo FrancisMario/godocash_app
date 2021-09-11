@@ -36,8 +36,6 @@ export const Revenue = (props) => {
         }
     }, [])
 
-    useEffect(() => {
-    },[]);
     const url = user.baseurl+"/api/entity";
     return(
         <>

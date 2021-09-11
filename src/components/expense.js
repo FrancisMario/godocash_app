@@ -6,11 +6,13 @@ import { AddExpense } from './AddExpense';
 import { ExpandedTable } from './dataTable';
 
 
+
 export const Expense = (props) => {
     const user = useContext(UserContext);
 
     const [balance, setBalance] = useState(-1);
     const [history, setHistory] = useState([]);
+
 
     // get stats
     const getData = () => {

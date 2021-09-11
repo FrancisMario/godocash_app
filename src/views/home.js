@@ -128,9 +128,9 @@ class HomePage extends React.Component {
             </Sidenav.Header>
             <Sidenav.Body>
               <Nav>
-                {/* <Nav.Item eventKey="1" active={this.state.active0} onClick={() => this.handleNav(0)} icon={<Icon icon="dashboard" />}>
+                <Nav.Item eventKey="1" active={this.state.active0} onClick={() => this.handleNav(1)} icon={<Icon icon="dashboard" />}>
                   Dashboard
-                </Nav.Item> */}
+                </Nav.Item>
                 <Dropdown
                   eventKey="3"
                   trigger="hover"
@@ -154,10 +154,11 @@ class HomePage extends React.Component {
           <Content>
             <div style={(contentStyle)}>
               {/* Payroll */}
-              {this.state.page === 1 ? <Dashboard /> : 
+              { 
+              this.state.page === 1 ? <Dashboard /> : 
               this.state.page === 2 ? <Entity title="Revenue"> <Revenue /></Entity> : 
               this.state.page === 3 ?  <Entity title="Expense"> <Expense /></Entity> : 
-              this.state.page === 4 ? <Entity title="Expense"> <Payroll /></Entity> : 
+              this.state.page === 4 ? <Entity title="Payroll"> <Payroll /></Entity> : 
               <Dashboard />}
             </div>
           </Content>

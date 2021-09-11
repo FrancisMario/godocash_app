@@ -1,7 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { Modal, Loader, Button, ButtonToolbar, Form, FormGroup, FormControl, HelpBlock, ControlLabel, Container } from 'rsuite';
 import UserContext from '../context/UserContext';
+import DatePicker from 'react-date-picker';
 var axios = require('axios');
+
 
 const AddRevenue = (props) => {
 
@@ -14,7 +16,7 @@ const AddRevenue = (props) => {
 
     const [amount, setAmount] = useState("");
     const [source, setSource] = useState("");
-    const [comment, setComment] = useState("");
+    const [date, setDate] = useState(new Date());
 
 
 
@@ -24,7 +26,7 @@ const AddRevenue = (props) => {
         axios.post(url, {
             'source': source,
             'amount': amount,
-            'comment': comment,
+            'date': date,
             'index': props.index
         })
             .then((response) => {
@@ -81,10 +83,11 @@ const AddRevenue = (props) => {
                             <HelpBlock >Required</HelpBlock>
                         </FormGroup>
                         <FormGroup>
-                            <ControlLabel>Comment</ControlLabel>
-                            <FormControl rows={3}  name="comment" type="comment" required={true} onChange={(change) => setComment(change)} />
-                            <HelpBlock tooltip>Comment about the main revenue injection</HelpBlock>
-                            <HelpBlock >Required</HelpBlock>
+                            <ControlLabel>Date</ControlLabel>
+                            {/* <FormControl rows={3}  name="comment" type="comment" required={true} onChange={(change) => setComment(change)} /> */}
+                            <DatePicker value={date} onChange={(date) => setDate(date)} />
+                            <HelpBlock tooltip>date</HelpBlock>
+                            <HelpBlock >Required</HelpBlock>x
                         </FormGroup>
                         <FormGroup>
                             <ButtonToolbar>
