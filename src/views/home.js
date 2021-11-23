@@ -10,6 +10,7 @@ import { Details } from "./../components/Details";
 import {Revenue}  from './../components/revenue';
 import {Expense}  from './../components/expense';
 import {Payroll}  from './../components/payroll';
+import { Inventory }  from './../components/inventory/inventory';
 
 
 const headerStyles = {
@@ -142,6 +143,7 @@ class HomePage extends React.Component {
                   <Dropdown.Item eventKey="" active={this.isActive(2)} onClick={() => this.handleNav(2)}>Revenue</Dropdown.Item>
                   <Dropdown.Item eventKey="" active={this.isActive(3)} onClick={() => this.handleNav(3)}>Expense</Dropdown.Item>
                   <Dropdown.Item eventKey="" active={this.isActive(4)} onClick={() => this.handleNav(4)}>Payroll</Dropdown.Item>
+                  <Dropdown.Item eventKey="" active={this.isActive(5)} onClick={() => this.handleNav(5)}>Inventory</Dropdown.Item>
                 </Dropdown>
               </Nav>
             </Sidenav.Body>
@@ -159,6 +161,7 @@ class HomePage extends React.Component {
               this.state.page === 2 ? <Entity title="Revenue"> <Revenue /></Entity> : 
               this.state.page === 3 ?  <Entity title="Expense"> <Expense /></Entity> : 
               this.state.page === 4 ? <Entity title="Payroll"> <Payroll /></Entity> : 
+              this.state.page === 5 ? <Entity title="Inventory"> <Inventory /></Entity> : 
               <Dashboard />}
             </div>
           </Content>
